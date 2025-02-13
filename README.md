@@ -100,12 +100,17 @@ Assistant: *Provides a detailed response with information from multiple relevant
 ```
 
 ## 🔍 Code Structure
-
-- `app.py`: Main Streamlit application
-- `database.py`: Document processing and ChromaDB management
-- `embedding.py`: Embedding generation using Ollama
-- `queries.py`: RAG and RAG Fusion implementation
-
+```
+streamlit-chat-app/
+├── README.md
+├── requirements.txt
+├── License
+└── src/
+    ├── app.py
+    ├── database.py
+    ├── embedding.py
+    └── queries.py
+```
 ## ⚠️ Notes
 
 - Ensure Ollama is running in the background before starting the application
