@@ -77,7 +77,7 @@ streamlit run app.py
 
 ## 📸 Demo Screenshots
 
-![Main Interface](https://i.imgur.com/placeholder1.png)
+![Main Interface](https://vk.com/album458435079_306433642?z=photo458435079_457241878%2Falbum458435079_306433642%2Frev)
 *Main chat interface with model selection and document upload*
 
 ![RAG in Action](https://i.imgur.com/placeholder2.png)
