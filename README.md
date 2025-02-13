@@ -1,5 +1,4 @@
 # MVPLLM
-# 🤖 Local Chatbot with Ollama
 
 A streamlit-based chatbot application that uses Ollama for local language model inference and RAG (Retrieval Augmented Generation) capabilities. The application supports document upload (PDF, DOCX, TXT) and allows users to ask questions based on the uploaded content.
 
@@ -30,9 +29,6 @@ streamlit
 langchain
 langchain-community
 chromadb
-pypdf
-python-docx
-docx2txt
 ```
 
 ## 🛠️ Installation
@@ -99,18 +95,31 @@ User: "Can you explain the relationship between X and Y mentioned in section 3?"
 Assistant: *Provides a detailed response with information from multiple relevant sections*
 ```
 
-## 🔍 Code Structure
+## 🔍 Project Structure
 ```
 streamlit-chat-app/
 ├── README.md
 ├── requirements.txt
 ├── License
+├── img/
+├    ├── 1.png
+├    └── 2.png
 └── src/
-    ├── app.py
-    ├── database.py
-    ├── embedding.py
-    └── queries.py
+    ├── data/          # Folder for temporary storage of uploaded PDF/DOCX files
+    ├── app.py         # Main Streamlit application
+    ├── database.py    # Document processing and ChromaDB management
+    ├── embedding.py   # Embedding generation using Ollama
+    └── queries.py     # RAG and RAG Fusion implementation
 ```
+
+### Important Note About File Handling
+When uploading PDF or DOCX files, they need to be stored temporarily for processing.
+
+1. The application will automatically handle file uploads to this directory.
+2. Files in this directory are used for temporary storage during document processing.
+3. You can clear this directory periodically as needed, as the processed content is stored in the vector database.
+
+
 ## ⚠️ Notes
 
 - Ensure Ollama is running in the background before starting the application
