@@ -38,14 +38,13 @@ def query_rag(query_text: str, Ollama_model, temperature):
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
     # Search the DB.
-    results = db.similarity_search_with_score(query_text, k=5)
+    results = db.similarity_search_with_score(query_text, k = 4)
 
     # Format the retrieved documents into a single context string
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     
     # Generate the final response
     response_text = ask_ai(query_text, context_text, Ollama_model, temperature)
-
     return response_text
 
 

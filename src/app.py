@@ -25,16 +25,6 @@ if(st.sidebar.button("Clear database")):
     st.success("Database cleared!")
 
 if uploaded_file:
-    target_directory = "data"
-
-    if not os.path.exists(target_directory):
-        os.makedirs(target_directory)
-
-    file_path = os.path.join(target_directory, uploaded_file.name)
-
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-    
     documents = load_documents(uploaded_file)
     chunks = split_documents(documents)
     add_to_chroma(chunks)

@@ -13,6 +13,13 @@ DATA_PATH = "data"
 
 def load_documents(file):
     if file.type == "application/pdf":
+        if not os.path.exists(DATA_PATH):
+            os.makedirs(DATA_PATH)
+        file_path = os.path.join(DATA_PATH, file.name)
+
+        with open(file_path, "wb") as f:
+            f.write(file.getbuffer())
+        
         document_loader = PyPDFDirectoryLoader(DATA_PATH)
     elif file.type == "text/plain":
         text = file.read().decode("utf-8")
@@ -28,6 +35,7 @@ def split_documents(documents: list[Document]):
         chunk_overlap=80,
         length_function=len,
         is_separator_regex=False,
+        separators=["\nArticle", "\nSection", "\n"]
     )
     return text_splitter.split_documents(documents)
 
