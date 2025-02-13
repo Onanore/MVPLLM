@@ -77,10 +77,10 @@ streamlit run app.py
 
 ## 📸 Demo Screenshots
 
-![Main Interface](https://drive.google.com/file/d/1COOMKL__hT3NPfKucWCUnXYWjcDbEhQG/view?usp=drive_link)
+![Main Interface](img/1.png)
 *Main chat interface with model selection and document upload*
 
-![RAG in Action](https://drive.google.com/file/d/172hOEZnyRe4daUZ-7OMLrURe-1UMlMWo/view?usp=drive_link)
+![RAG in Action](img/2.png)
 *Example of RAG-based response generation*
 
 ## 📝 Example Usage
