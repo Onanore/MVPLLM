@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.llms.ollama import Ollama
@@ -14,9 +15,9 @@ st.markdown("Upload the file and ask questions based on it.")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-Ollama_model = st.sidebar.selectbox("Model: ",[ "qwen2.5:1.5b", "deepseek-r1:1.5b", "deepseek-r1"])
+Ollama_model = st.sidebar.selectbox("Model: ",[ "qwen2.5:1.5b", "deepseek-r1:1.5b"])
 temperature = st.sidebar.slider("temperature", 0.0, 1.0, 0.3)
-uploaded_file = st.sidebar.file_uploader("Attach TXT file", type=["txt", "pdf", "docx"])
+uploaded_file = st.sidebar.file_uploader("Attach file", type=["txt", "pdf"])
 rag_fusion = st.sidebar.checkbox("RAG Fusion")
 
 if(st.sidebar.button("Clear database")):
@@ -24,6 +25,16 @@ if(st.sidebar.button("Clear database")):
     st.success("Database cleared!")
 
 if uploaded_file:
+    target_directory = "data"
+
+    if not os.path.exists(target_directory):
+        os.makedirs(target_directory)
+
+    file_path = os.path.join(target_directory, uploaded_file.name)
+
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    
     documents = load_documents(uploaded_file)
     chunks = split_documents(documents)
     add_to_chroma(chunks)

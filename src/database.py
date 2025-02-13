@@ -1,7 +1,6 @@
 import os
 import shutil
 from langchain_community.document_loaders import PyPDFDirectoryLoader
-from langchain_community.document_loaders.word_document import Docx2txtLoader
 from langchain_community.document_loaders.telegram import text_to_docs
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
@@ -15,8 +14,6 @@ DATA_PATH = "data"
 def load_documents(file):
     if file.type == "application/pdf":
         document_loader = PyPDFDirectoryLoader(DATA_PATH)
-    elif file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-        document_loader = Docx2txtLoader(DATA_PATH)
     elif file.type == "text/plain":
         text = file.read().decode("utf-8")
         return text_to_docs(text)
